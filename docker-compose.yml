@@ -8,5 +8,5 @@ services:
     ports:
       - "80:80"
     environment:
-      - NGINX_HOST=rowdie.duckdns.org
+      - NGINX_HOST=yourdomain.example
       - NGINX_PORT=80
