@@ -1,18 +1,4 @@
 <h1 align="center">Javascript 🧑‍💻</h1>
-<p>
-  <a href="https://www.npmjs.com/package/js" target="_blank">
-    <img alt="Version" src="https://img.shields.io/npm/v/js.svg">
-  </a>
-  <a href="https://github.com/Vyper-v/Js#readme" target="_blank">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
-  </a>
-  <a href="https://github.com/Vyper-v/Js/graphs/commit-activity" target="_blank">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
-  </a>
-  <a href="https://github.com/Vyper-v/Js/blob/master/LICENSE" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/github/license/Vyper-v/js"/>
-  </a>
-</p>
 
 > Repositorio para guardar desafios de Javascript, y el Proyecto final
 
