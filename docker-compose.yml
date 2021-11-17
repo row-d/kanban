@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  web:
+    image: nginx:1.21.4-alpine
+    volumes:
+      - ./src:/usr/share/nginx/html:ro
+    ports:
+      - "80:80"
+    environment:
+      - NGINX_HOST=rowdie.duckdns.org
+      - NGINX_PORT=80
