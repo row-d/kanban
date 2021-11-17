@@ -10,7 +10,7 @@
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
   </a>
   <a href="https://github.com/Vyper-v/Js/blob/master/LICENSE" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/github/license/Vyper-v/js" />
+    <img alt="License: MIT" src="https://img.shields.io/github/license/Vyper-v/js"/>
   </a>
 </p>
 
