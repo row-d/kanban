@@ -26,43 +26,37 @@ const MonthName = [
   "November",
   "December",
 ];
-let Today = new Date();
+const Today = new Date();
 const day = Today.getDay();
 const month = Today.getMonth();
 const year = Today.getFullYear();
-let hour = Today.getHours();
-let greeting;
+const hour = Today.getHours();
 
-const age = Today.getFullYear() - yearOfBirth; 
+const age = Today.getFullYear() - yearOfBirth;
 let ageMessage;
+
 if (age < 0) {
   ageMessage = "You are not born yet 🤰";
-}
-else if (age < 18) {
+} else if (age < 18) {
   ageMessage = "You're still a baby 🧑‍🍼";
-}
-else if (age < 30) {
+} else if (age < 30) {
   ageMessage = "You're a teenager 🧑‍🎓";
-}
-else if (age < 50) {
+} else if (age < 50) {
   ageMessage = "You're a young adult 🧑‍💼";
-}
-else if (age < 70) {
+} else if (age < 70) {
   ageMessage = "You're a middle aged 👴";
-}
-else if (age < 100) {
+} else if (age < 100) {
   ageMessage = "You're an old adult 👵";
-}
-else {
+} else {
   ageMessage = "You're a very old 🧙‍♂️";
 }
+
+let greeting = "🌙Good evening";
 
 if (hour >= 5 && hour < 12) {
   greeting = "🌻Good morning";
 } else if (hour >= 12 && hour < 18) {
   greeting = "🌇Good afternoon";
-} else if (hour >= 18 && hour < 24) {
-  greeting = "🌙Good evening";
 }
 
 document.write(
