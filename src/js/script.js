@@ -1,5 +1,12 @@
 const products = document.getElementById("products");
-let dinero = prompt("Dame tu dinero", 0);
+const dineroElement = document.getElementById("dinero");
+let dinero;
+do{
+  dinero = parseInt(window.prompt("Ingresa el dinero"));
+
+}while(isNaN(dinero) || dinero < 0)
+
+dineroElement.textContent = dinero; 
 
 function Product(id, name, price, quantity, imageSrc) {
   // Creating DOM elements
@@ -78,21 +85,23 @@ function Product(id, name, price, quantity, imageSrc) {
 
   // function event to buy product
   function buy() {
-    if (dinero > price) {
+    if (quantity <= 0) {
+      quantity = 0;
+      stock.classList.remove("text-blue-500");
+      stock.classList.add("text-red-500");
+
+      image.classList.add("filter", "grayscale");
+      alert("Producto fuera de stock");
+    } else if (dinero < price) {
+      alert("No tienes suficiente dinero");
+    } else {
       dinero = dinero - price;
+      dineroElement.textContent = dinero; 
       alert(`Compraste ${name}`);
       quantity--;
-      if (quantity <= 0) {
-        quantity = 0;
-        stock.classList.remove("text-blue-500");
-        stock.classList.add("text-red-500");
-
-        image.classList.add("filter", "grayscale");
-      }
-      stock.textContent = `Stock: ${quantity}`;
-    } else {
-      alert("No tienes suficiente dinero");
     }
+
+    stock.textContent = `Stock: ${quantity}`;
   }
   // adding event listeners
   productContainer.addEventListener("click", buy);
