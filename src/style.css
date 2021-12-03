@@ -1,7 +1,0 @@
-/* Referencia al Stack Layout https://every-layout.dev/layouts/stack/ */
-
-/* Agrega margin top a todos los hijos, menos al primero */
-
-body > * + * {
-  margin-top: 1.5rem;
-}

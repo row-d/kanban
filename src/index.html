@@ -2,18 +2,31 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <title>Shop</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
       rel="stylesheet"
     />
-    <link href="./style.css" rel="stylesheet" />
-    <script defer src="./script.js"></script>
-    <title>Hello world!</title>
+    <script src="./js/script.js" defer></script>
   </head>
-  <body class="bg-gray-200"></body>
+  <body class="bg-gray-400 px-1">
+    <div
+      id="machineVending"
+      class="
+        container
+        bg-gray-600
+        border-l-8 border-r-8 border-gray-800
+        p-4
+        mx-auto
+        min-h-screen
+      "
+    >
+      <div
+        id="products"
+        class="container bg-blue-200 rounded p-4 flex flex-wrap gap-2"
+      ></div>
+    </div>
+  </body>
 </html>
