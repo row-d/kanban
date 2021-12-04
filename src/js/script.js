@@ -1,15 +1,20 @@
-const products = document.getElementById("products");
 const dineroElement = document.getElementById("dinero");
+
 let dinero;
-do{
-  dinero = parseInt(window.prompt("Ingresa el dinero"));
+do {
+  dinero = parseInt(prompt("Ingresa el dinero"));
+} while (isNaN(dinero) || dinero < 0);
 
-}while(isNaN(dinero) || dinero < 0)
+dineroElement.textContent = dinero;
 
-dineroElement.textContent = dinero; 
-
-function Product(id, name, price, quantity, imageSrc) {
+function Product({ id, name, price, quantity, imageSrc }) {
   // Creating DOM elements
+  /*
+    product
+      image
+      footer
+        id title price stock
+  */
   const productContainer = document.createElement("div");
   const footer = document.createElement("footer");
   const idTag = document.createElement("span");
@@ -96,7 +101,7 @@ function Product(id, name, price, quantity, imageSrc) {
       alert("No tienes suficiente dinero");
     } else {
       dinero = dinero - price;
-      dineroElement.textContent = dinero; 
+      dineroElement.textContent = dinero;
       alert(`Compraste ${name}`);
       quantity--;
     }
@@ -109,39 +114,25 @@ function Product(id, name, price, quantity, imageSrc) {
   return productContainer;
 }
 
-function VendingMachine(cantidadProductos) {
+async function VendingMachine(cantidadProductos) {
+  const products = document.getElementById("products");
+
   for (let i = 0; i < cantidadProductos; i++) {
-    const randomPrice = Math.floor(
-      Math.random() * (10 - 1) + 1
-    );
-    const randomStock = Math.floor(
-      Math.random() * (10 - 1) + 1
-    );
-    const randomIndex = Math.floor(
-      Math.random() * (6 - 1) + 1
-    );
-    const randomName = [
-      "Coke",
-      "Pepsi",
-      "Sprite",
-      "Dr. Pepper",
-      "Diet Coke",
-      "Diet Pepsi",
-      "Diet Sprite",
-      "Diet Dr. Pepper",
-      "Fanta",
-      "Ginger Ale",
-      "Lemonade",
-      "Water",
-    ];
-    const element = Product(
-      i,
-      `${randomName[randomIndex]}`,
-      randomPrice,
-      randomStock,
-      `https://picsum.photos/200/200?random=${i}`
-    );
-    products.appendChild(element);
+    await fetch(
+      "https://random-data-api.com/api/food/random_food"
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        const product = Product({
+          id: data.id,
+          name: data.dish,
+          price: Math.floor(Math.random() * 100),
+          quantity: Math.floor(Math.random() * 10),
+          imageSrc: `https://picsum.photos/200/200/?random=${i}`,
+        });
+
+        products.appendChild(product);
+      });
   }
 }
 
