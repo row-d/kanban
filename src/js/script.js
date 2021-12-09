@@ -1,11 +1,10 @@
 const generate = document.getElementById("generate");
-const designSystem = document.getElementById("designSystem");
+const designSystem =
+  document.getElementById("designSystem");
 const colors = document.getElementById("colors");
 const [primary, secondary, grays, state] = colors.children;
 const typography = document.getElementById("typography");
 const spacing = document.getElementById("spacing");
-
-
 
 /*
  Response from the API is a JSON object with the following structure:
@@ -59,7 +58,13 @@ async function getRandomColors(range = 1) {
 function ColorValues(colors) {
   const column = document.createElement("div");
   column.style.backgroundColor = colors.hex;
-  column.classList.add("space-y-2", "text-xl","p-2","w-96","rounded");
+  column.classList.add(
+    "space-y-2",
+    "text-xl",
+    "p-2",
+    "w-96",
+    "rounded"
+  );
 
   for (const [format, color] of Object.entries(colors)) {
     const row = document.createElement("div");
@@ -68,7 +73,7 @@ function ColorValues(colors) {
     const img = document.createElement("img");
 
     // add styles & attributes
-    row.classList.add("opacity-5","hover:opacity-100");
+    row.classList.add("opacity-5", "hover:opacity-100");
 
     icon.classList.add(
       "bg-gray-300",
@@ -79,8 +84,22 @@ function ColorValues(colors) {
       "px-2",
       "cursor-pointer"
     );
-    colorValue.classList.add("text-gray-900", "font-bold", "text-xl");
-    icon.classList.add("transition", "duration-150","inline-flex","items-center","justify-center","cursor-pointer","w-8","rounded-full", "px-2");
+    colorValue.classList.add(
+      "text-gray-900",
+      "font-bold",
+      "text-xl"
+    );
+    icon.classList.add(
+      "transition",
+      "duration-150",
+      "inline-flex",
+      "items-center",
+      "justify-center",
+      "cursor-pointer",
+      "w-8",
+      "rounded-full",
+      "px-2"
+    );
     img.src = "./assets/clipboard-outline.svg";
     colorValue.innerText = color;
 
@@ -106,7 +125,9 @@ function ColorValues(colors) {
 }
 
 generate.addEventListener("click", async () => {
-  const rangeColors = parseInt(document.getElementById("range-colors").value);
+  const rangeColors = parseInt(
+    document.getElementById("range-colors").value
+  );
   const colors = await getRandomColors(rangeColors);
 
   if (Array.isArray(colors)) {
