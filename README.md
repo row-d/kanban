@@ -34,16 +34,3 @@ npm run lint
 
 * Github: [@Vyper-v](https://github.com/Vyper-v)
 * LinkedIn: [@David Gomez](https://www.linkedin.com/in/david-gomez-38a790173)
-
-## 🤝 Contributing
-
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/Vyper-v/Js/issues). You can also take a look at the [contributing guide](https://github.com/Vyper-v/Js/blob/master/CONTRIBUTING.md).
-
-## Show your support
-
-Give a ⭐️ if this project helped you!
-
-## 📝 License
-
-Copyright © 2021 [David Gomez](https://github.com/Vyper-v).<br />
-This project is [MIT](https://github.com/Vyper-v/Js/blob/master/LICENSE) licensed.
