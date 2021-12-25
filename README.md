@@ -12,9 +12,16 @@ npm install
 
 ## Usage
 
-Nginx host
+Serve locall
+
+Start
 ```sh
-docker-compose up -d
+npm start
+```
+
+Build
+```sh
+npm run build
 ```
 
 Prettier formatter
