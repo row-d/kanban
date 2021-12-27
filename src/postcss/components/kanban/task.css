@@ -1,0 +1,22 @@
+@layer components{
+  .task{
+    @apply flex justify-between  gap-2;
+  }
+
+  input[name="task-name"]{
+    @apply shadow-inner bg-gray-100 border-2 border-gray-300 rounded p-2 w-full;
+  }
+
+  .taskOptions{
+    @apply flex flex-col lg:flex-row justify-between items-center lg:items-baseline rounded border border-violet-600 bg-violet-400 space-y-2 lg:space-x-2 lg:px-2;
+  }
+
+  .taskOptions > *{
+    @apply cursor-pointer fill-blue-500 !important;
+  }
+  
+
+  .addTask{
+    @apply border-2 border-violet-400 rounded-full pr-4 pl-4 self-center;
+  }
+}

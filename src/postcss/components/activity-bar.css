@@ -1,0 +1,14 @@
+@layer components{
+  .activityBar{
+    @apply flex justify-between place-items-end  p-2 h-1/4 bg-violet-900;
+  }
+
+  .board-title{
+    @apply text-4xl focus:placeholder:text-transparent;
+  }
+
+  .addColumn{
+    @apply rounded-full border-2 border-black
+    text-black hover:text-transparent hover:bg-black pr-6 pl-6;
+  }
+}

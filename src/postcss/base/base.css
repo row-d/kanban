@@ -1,0 +1,14 @@
+@layer base{
+
+  body {
+    --border: 4px solid black;
+    --padding: calc(1rem * 1.4);
+    --border-thick: 4px;
+    @apply h-screen font-serif antialiased leading-tight;
+  }
+
+  input[type="text"],textarea{
+    @apply text-black
+    placeholder:text-black border-none outline-none bg-transparent;
+  }
+}

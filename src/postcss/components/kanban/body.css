@@ -1,0 +1,5 @@
+@layer components {
+  .kanban {
+    @apply flex flex-col lg:flex-row lg:flex-wrap w-full h-3/4 p-2;
+  }
+}

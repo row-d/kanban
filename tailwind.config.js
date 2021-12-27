@@ -1,11 +1,12 @@
 module.exports = {
   mode:"jit",
-  content: [
-    './src/**/*.html',
-    './src/**/*.js',
-  ],
+  content: ['./src/**/*.{html,js}'],
   theme: {
-    extend: {},
+    extend: {
+      minWidth:{
+        '1/3': "33.333333%",
+      },
+    }
   },
   plugins: [],
 }
