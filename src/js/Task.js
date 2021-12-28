@@ -1,7 +1,9 @@
-import { createElementsInElement, appendChilds } from "./utilities";
+import {
+  createElementsInElement,
+  appendChilds,
+} from "./utilities";
 
-
-export default function addTask(taskContent = "Task 🔖" ) {
+export default function addTask(taskContent = "Task 🔖") {
   const task = document.createElement("li");
   const taskText = document.createElement("textarea");
   const taskOptions = document.createElement("div");
@@ -40,7 +42,7 @@ export default function addTask(taskContent = "Task 🔖" ) {
       },
     ],
     "div"
-  );  
+  );
 
   // add classes
   task.classList.add("task");

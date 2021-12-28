@@ -25,7 +25,7 @@ function createElementsInElement(
     ? document.createElement(wrapperElement)
     : wrapperElement;
 
-  elementsTag.forEach(({ tag, classNames}) => {
+  elementsTag.forEach(({ tag, classNames }) => {
     const element = document.createElement(tag);
     element.classList.add(...classNames);
     wrapper.appendChild(element);

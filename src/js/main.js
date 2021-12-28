@@ -1,5 +1,5 @@
-import createColumn from "./column";
-import addTask from "./task";
+import createColumn from "./Column";
+import addTask from "./Task";
 
 const kanban = document.querySelector(".kanban");
 const boardTitle = document.querySelector(".board-title");
@@ -14,11 +14,13 @@ const saveBoardButton =
 window.addEventListener("load", () => {
   if (localStorage.length > 0) {
     boardTitle.value = localStorage.getItem("board-title");
-    const kanbanData = JSON.parse(localStorage.getItem("kanban"));
-    kanbanData.forEach(({columnTitle,tasksTitles}) =>{
-      const column = createColumn(columnTitle,tasksTitles);
+    const kanbanData = JSON.parse(
+      localStorage.getItem("kanban")
+    );
+    kanbanData.forEach(({ columnTitle, tasksTitles }) => {
+      const column = createColumn(columnTitle, tasksTitles);
       kanban.appendChild(column);
-    })
+    });
   }
 });
 
@@ -48,7 +50,6 @@ resetBoardButton.addEventListener("click", () => {
 });
 
 saveBoardButton.addEventListener("click", () => {
-  
   const columns = kanban.querySelectorAll(".column");
   const columnsData = [];
   columns.forEach((column) => {
@@ -56,11 +57,16 @@ saveBoardButton.addEventListener("click", () => {
       ".column-header"
     ).value;
     const tasksTitles = [];
-    column.querySelectorAll(".task-text").forEach((task) => {
+    column
+      .querySelectorAll(".task-text")
+      .forEach((task) => {
         tasksTitles.push(task.value);
       });
     columnsData.push({ columnTitle, tasksTitles });
   });
-  localStorage.setItem("kanban", JSON.stringify(columnsData));
+  localStorage.setItem(
+    "kanban",
+    JSON.stringify(columnsData)
+  );
   localStorage.setItem("board-title", boardTitle.value);
 });
