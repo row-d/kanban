@@ -1,5 +1,5 @@
 import createColumn from "./Column";
-import addTask from "./Task";
+import {addTaskEvent} from "./Task";
 
 const kanban = document.querySelector(".kanban");
 const boardTitle = document.querySelector(".board-title");
@@ -19,6 +19,8 @@ window.addEventListener("load", () => {
     );
     kanbanData.forEach(({ columnTitle, tasksTitles }) => {
       const column = createColumn(columnTitle, tasksTitles);
+      addTaskEvent(column);
+      
       kanban.appendChild(column);
     });
   }
@@ -27,14 +29,7 @@ window.addEventListener("load", () => {
 // add event listener
 addColumnButton.addEventListener("click", () => {
   const column = createColumn();
-  const addTaskButton = column.querySelector(".addTask");
-
-  addTaskButton.addEventListener("click", () => {
-    const task = addTask();
-    const columnTasks =
-      column.querySelector(".column-tasks");
-    columnTasks.appendChild(task);
-  });
+  addTaskEvent(column);
   kanban.appendChild(column);
 });
 

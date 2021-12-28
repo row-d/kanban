@@ -3,7 +3,7 @@ import {
   appendChilds,
 } from "./utilities";
 
-export default function addTask(taskContent = "Task 🔖") {
+function addTask(taskContent = "Task 🔖") {
   const task = document.createElement("li");
   const taskText = document.createElement("textarea");
   const taskOptions = document.createElement("div");
@@ -65,3 +65,15 @@ export default function addTask(taskContent = "Task 🔖") {
 
   return task.cloneNode(true);
 }
+
+function addTaskEvent(column) {
+  const addTaskButton = column.querySelector(".addTask");
+
+  addTaskButton.addEventListener("click", () => {
+    const task = addTask();
+    const columnTasks = column.querySelector(".column-tasks");
+    columnTasks.appendChild(task);
+  });
+}
+
+export { addTask, addTaskEvent };
