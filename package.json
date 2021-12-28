@@ -7,7 +7,7 @@
     "lint": "eslint \"src/**/*.js\" --quiet",
     "start": "parcel src/index.html --lazy",
     "watch": "parcel watch src/index.html",
-    "build": "parcel build src/index.html --out-dir dist --lazy"
+    "build": "parcel build src/index.html --no-source-maps"
   },
   "repository": {
     "type": "git",
