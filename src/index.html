@@ -15,24 +15,14 @@
   <body>
     <div class="activityBar">
       <input type="text" placeholder="Kanban Board Title" class="board-title"></input>
-      <button class="addColumn">Add Column</button>
+      <div class="kanbanOptions">
+        <button class="button--warning">Reset Board</button>
+        <button class="button">Add Column</button>
+        <button class="button--save">Save Board</button>
+      </div>
     </div>
     <div class="kanban">
-      <div class="column">
-        <input type="text" class="column-header" placeholder="To do"></input>
-        <ul class="column-tasks">
-          <li class="task">
-            <input type="text" name="task-name" />
-            <div class="taskOptions">
-              <i class="far fa-edit "></i>
-              <i class="fas fa-trash"></i>
-              <i class="fas fa-caret-up"></i>
-              <i class="fas fa-caret-down"></i>
-            </div>
-          </li>
-          <button class="addTask">+</button>
-        </ul>
-      </div>
+      
     </div>
   </body>
 </html>

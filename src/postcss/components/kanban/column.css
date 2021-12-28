@@ -1,11 +1,11 @@
 @layer components{
 
   .column{
-    @apply flex flex-col rounded border p-2 shadow h-full space-y-4 min-w-1/3;
+    @apply flex flex-col shadow-primary overflow-hidden rounded p-2 shadow space-y-4 bg-neutral-800;
   }
 
   .column-header{
-    @apply w-full text-center text-2xl bg-white !important;
+    @apply resize-none w-full text-primary placeholder:text-primary text-center text-2xl  bg-neutral-900 !important;
   }
 
   .column-tasks{

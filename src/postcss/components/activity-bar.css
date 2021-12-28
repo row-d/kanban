@@ -1,14 +1,55 @@
-@layer components{
-  .activityBar{
-    @apply flex justify-between place-items-end  p-2 h-1/4 bg-violet-900;
+@layer components {
+  .activityBar {
+    @apply flex flex-col justify-between items-center p-1 h-1/4 gap-4 bg-neutral-800;
+  }
+  @screen xl {
+    .activityBar {
+      @apply flex-row justify-between items-end;
+    }
   }
 
-  .board-title{
-    @apply text-4xl focus:placeholder:text-transparent;
+  .board-title {
+    @apply text-center text-3xl focus:placeholder:text-transparent font-bold text-white placeholder:text-white;
+  }
+  @screen xl {
+    .board-title {
+      @apply text-6xl;
+    }
   }
 
-  .addColumn{
-    @apply rounded-full border-2 border-black
-    text-black hover:text-transparent hover:bg-black pr-6 pl-6;
+  .kanbanOptions {
+    @apply flex items-center gap-2 mb-4;
+  }
+
+  @screen xl {
+    .kanbanOptions {
+      @apply flex-row justify-between items-center;
+    }
+  }
+  
+  .button {
+    @apply overflow-hidden bg-primary text-base text-black font-bold px-3 py-2;
+  }
+
+  .button--warning{
+    @apply overflow-hidden bg-red-600 text-base text-black font-bold px-3 py-2;
+  }
+  
+  .button--save{
+    @apply overflow-hidden bg-emerald-400 text-base text-black font-bold px-3 py-2;
+  }
+
+  @screen xl{
+    .button {
+      @apply px-6 py-4;
+    }
+  
+    .button--warning{
+      @apply px-6 py-4;
+    }
+
+    .button--save{
+      @apply px-6 py-4;
+    }
   }
 }
