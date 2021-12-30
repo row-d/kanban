@@ -3,7 +3,7 @@ import {
   appendChilds,
 } from "./utilities";
 
-function addTask(taskContent = "Task 🔖") {
+function createTask(id, taskContent = "Task 🔖") {
   const task = document.createElement("li");
   const taskText = document.createElement("textarea");
   const taskOptions = document.createElement("div");
@@ -45,7 +45,9 @@ function addTask(taskContent = "Task 🔖") {
   );
 
   // add classes
+  task.draggable = true;
   task.classList.add("task");
+  task.id = id;
   taskText.classList.add("task-text");
   taskText.placeholder = taskContent;
   taskOptions.classList.add("taskOptions");
@@ -70,10 +72,11 @@ function addTaskEvent(column) {
   const addTaskButton = column.querySelector(".addTask");
 
   addTaskButton.addEventListener("click", () => {
-    const task = addTask();
-    const columnTasks = column.querySelector(".column-tasks");
+    const task = createTask();
+    const columnTasks =
+      column.querySelector(".column-tasks");
     columnTasks.appendChild(task);
   });
 }
 
-export { addTask, addTaskEvent };
+export { createTask, addTaskEvent };

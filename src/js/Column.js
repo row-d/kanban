@@ -1,7 +1,7 @@
 import { createElementsInElement } from "./utilities";
-import addTask from "./Task";
+import { addTaskEvent, createTask } from "./Task";
 
-export default function createColumn(
+function createColumn(
   columnTitle = "title",
   tasksTitles = null
 ) {
@@ -29,10 +29,20 @@ export default function createColumn(
 
   if (tasksTitles !== null) {
     tasksTitles.forEach((taskTitle) => {
-      const task = addTask(taskTitle);
+      const task = createTask(taskTitle);
       columnTasks.appendChild(task);
     });
   }
 
   return column.cloneNode(true);
 }
+
+function addColumn(element, kanban) {
+  element.addEventListener("click", () => {
+    const column = createColumn();
+    addTaskEvent(column);
+    kanban.appendChild(column);
+  });
+}
+
+export { addColumn, createColumn };

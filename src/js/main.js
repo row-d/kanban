@@ -1,6 +1,8 @@
-import createColumn from "./Column";
-import {addTaskEvent} from "./Task";
+import { saveBoard, resetBoard } from "./Events/Board";
+import { addColumn } from "./Column";
+import getKanbanData from "./Events/window";
 
+// Get elements
 const kanban = document.querySelector(".kanban");
 const boardTitle = document.querySelector(".board-title");
 const addColumnButton = document.querySelector(".button");
@@ -10,58 +12,14 @@ const resetBoardButton = document.querySelector(
 const saveBoardButton =
   document.querySelector(".button--save");
 
-// get Columns
-window.addEventListener("load", () => {
-  if (localStorage.length > 0) {
-    boardTitle.value = localStorage.getItem("board-title");
-    const kanbanData = JSON.parse(
-      localStorage.getItem("kanban")
-    );
-    kanbanData.forEach(({ columnTitle, tasksTitles }) => {
-      const column = createColumn(columnTitle, tasksTitles);
-      addTaskEvent(column);
-      
-      kanban.appendChild(column);
-    });
-  }
-});
+// get data from local storage and render it
+getKanbanData(kanban, boardTitle);
 
-// add event listener
-addColumnButton.addEventListener("click", () => {
-  const column = createColumn();
-  addTaskEvent(column);
-  kanban.appendChild(column);
-});
+// add event listener to add column
+addColumn(addColumnButton, kanban);
 
-resetBoardButton.addEventListener("click", () => {
-  if (
-    window.confirm(
-      "Are you sure you want to reset the board?"
-    )
-  ) {
-    localStorage.clear();
-    kanban.innerHTML = "";
-  }
-});
+// add event listener to reset board and local storage
+resetBoard(resetBoardButton, kanban, boardTitle);
 
-saveBoardButton.addEventListener("click", () => {
-  const columns = kanban.querySelectorAll(".column");
-  const columnsData = [];
-  columns.forEach((column) => {
-    const columnTitle = column.querySelector(
-      ".column-header"
-    ).value;
-    const tasksTitles = [];
-    column
-      .querySelectorAll(".task-text")
-      .forEach((task) => {
-        tasksTitles.push(task.value);
-      });
-    columnsData.push({ columnTitle, tasksTitles });
-  });
-  localStorage.setItem(
-    "kanban",
-    JSON.stringify(columnsData)
-  );
-  localStorage.setItem("board-title", boardTitle.value);
-});
+// add event listener to save board on local storage
+saveBoard(saveBoardButton, kanban, boardTitle);
