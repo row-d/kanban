@@ -12,8 +12,9 @@ export default function getKanbanData(kanban, boardTitle) {
       kanbanData.forEach(({ columnTitle, tasksTitles }) => {
         const column = createColumn(
           columnTitle,
-          tasksTitles
+          tasksTitles 
         );
+        // button to add task
         addTaskEvent(column);
 
         kanban.appendChild(column);

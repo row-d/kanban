@@ -28,8 +28,8 @@ function createColumn(
   column.appendChild(addTaskButton);
 
   if (tasksTitles !== null) {
-    tasksTitles.forEach((taskTitle) => {
-      const task = createTask(taskTitle);
+    tasksTitles.forEach((taskTitle,i) => {
+      const task = createTask(i,taskTitle);
       columnTasks.appendChild(task);
     });
   }

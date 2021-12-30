@@ -72,7 +72,7 @@ function addTaskEvent(column) {
   const addTaskButton = column.querySelector(".addTask");
 
   addTaskButton.addEventListener("click", () => {
-    const task = createTask();
+    const task = createTask(0);
     const columnTasks =
       column.querySelector(".column-tasks");
     columnTasks.appendChild(task);
