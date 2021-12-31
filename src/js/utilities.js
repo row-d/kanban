@@ -5,8 +5,7 @@ function isDOM(obj) {
 // check if string is html tag name
 function isTag(str) {
   return (
-    document.createElement(str).toString() !=
-    "[object HTMLUnknownElement]"
+    document.createElement(str).toString() != "[object HTMLUnknownElement]"
   );
 }
 
@@ -17,10 +16,7 @@ function isTag(str) {
  * @returns wrapper element
  */
 
-function createElementsInElement(
-  elementsTag,
-  wrapperElement
-) {
+function createElementsInElement(elementsTag, wrapperElement) {
   const wrapper = isTag(wrapperElement)
     ? document.createElement(wrapperElement)
     : wrapperElement;
@@ -44,9 +40,4 @@ function appendChilds(childs, parent) {
   });
 }
 
-export {
-  createElementsInElement,
-  appendChilds,
-  isDOM,
-  isTag,
-};
+export { createElementsInElement, appendChilds, isDOM, isTag };

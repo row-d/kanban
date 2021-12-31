@@ -9,7 +9,7 @@
   }
 
   .column-tasks{
-    @apply flex flex-col space-y-4;
+    @apply flex flex-col gap-4 bg-neutral-700 p-2;
   }
 
 }

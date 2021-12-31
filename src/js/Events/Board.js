@@ -1,34 +1,33 @@
 function saveBoard(button, kanban, boardTitle) {
-  button.addEventListener("click", () => {
+  function saveOnLocalStorage() {
     const columns = kanban.querySelectorAll(".column");
     const columnsData = [];
+
     columns.forEach((column) => {
-      const columnTitle = column.querySelector(
-        ".column-header"
-      ).value;
+      const columnTitle = column.querySelector(".column-header").value;
       const tasksTitles = [];
-      column
-        .querySelectorAll(".task-text")
-        .forEach((task) => {
-          tasksTitles.push(task.value);
-        });
+      column.querySelectorAll(".task-text").forEach((task) => {
+        tasksTitles.push(task.value);
+      });
       columnsData.push({ columnTitle, tasksTitles });
     });
-    localStorage.setItem(
-      "kanban",
-      JSON.stringify(columnsData)
-    );
+    localStorage.setItem("kanban", JSON.stringify(columnsData));
     localStorage.setItem("board-title", boardTitle.value);
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.ctrlKey && e.key == "s") {
+      e.preventDefault();
+      saveOnLocalStorage();
+    }
   });
+
+  button.addEventListener("click", saveOnLocalStorage);
 }
 
 function resetBoard(element, kanban, boardTitle) {
   element.addEventListener("click", () => {
-    if (
-      window.confirm(
-        "Are you sure you want to reset the board?"
-      )
-    ) {
+    if (window.confirm("Are you sure you want to reset the board?")) {
       localStorage.clear();
       kanban.innerHTML = "";
       boardTitle.value = "Untitled";

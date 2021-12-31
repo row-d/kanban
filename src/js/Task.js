@@ -1,9 +1,8 @@
-import {
-  createElementsInElement,
-  appendChilds,
-} from "./utilities";
+import { createElementsInElement, appendChilds } from "./utilities";
+import { startDrag } from "./Drag&Drop/drag";
+import { v4 as uuidv4 } from "uuid";
 
-function createTask(id, taskContent = "Task 🔖") {
+function createTask(taskContent = "Task 🔖") {
   const task = document.createElement("li");
   const taskText = document.createElement("textarea");
   const taskOptions = document.createElement("div");
@@ -45,36 +44,35 @@ function createTask(id, taskContent = "Task 🔖") {
   );
 
   // add classes
-  task.draggable = true;
   task.classList.add("task");
-  task.id = id;
   taskText.classList.add("task-text");
-  taskText.placeholder = taskContent;
   taskOptions.classList.add("taskOptions");
+
+  // properties
+  task.draggable = true;
+  task.id = uuidv4();
+  taskText.value = taskContent;
+
+  // start drag
+  task.addEventListener("dragstart", startDrag);
 
   // append
   appendChilds(
-    [
-      editButton,
-      deleteButton,
-      movePrevButton,
-      moveNextButton,
-    ],
+    [editButton, deleteButton, movePrevButton, moveNextButton],
     taskOptions
   );
   task.appendChild(taskText);
   task.appendChild(taskOptions);
 
-  return task.cloneNode(true);
+  return task;
 }
 
 function addTaskEvent(column) {
   const addTaskButton = column.querySelector(".addTask");
 
   addTaskButton.addEventListener("click", () => {
-    const task = createTask(0);
-    const columnTasks =
-      column.querySelector(".column-tasks");
+    const task = createTask();
+    const columnTasks = column.querySelector(".column-tasks");
     columnTasks.appendChild(task);
   });
 }
