@@ -4,18 +4,18 @@
   }
 
   .task-text{
-    @apply resize-y w-full text-primary placeholder:text-primary text-center text-2xl  bg-neutral-900 h-full !important;
+    @apply w-full p-1 text-nord4 placeholder:text-nord4 text-base bg-nord1 !important;
   }
 
   .taskOptions{
-    @apply flex flex-col items-center border border-primary bg-primary gap-2 p-1;
+    @apply rounded-lg flex flex-col items-center border border-nord7 bg-nord7 gap-2 p-1;
   }
 
   .taskOptions > * {
-    @apply cursor-pointer;
+    @apply cursor-pointer text-nord0;
   }
 
   .addTask{
-    @apply bg-primary px-4 py-1 self-center text-base cursor-pointer;
+    @apply bg-nord7 text-nord0 px-4 py-1 rounded self-center text-base cursor-pointer;
   }
 }

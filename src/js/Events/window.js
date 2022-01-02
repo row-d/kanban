@@ -7,7 +7,7 @@ export default function getKanbanData(kanban, boardTitle) {
     let titleStorage = localStorage.getItem("board-title");
 
     if (kanban != null && titleStorage != null) {
-      boardTitle.value = titleStorage;
+      boardTitle.textContent = titleStorage;
       const kanbanData = JSON.parse(kanbanStorage);
       kanbanData.forEach(({ columnTitle, tasksTitles }) => {
         const column = createColumn(columnTitle, tasksTitles);

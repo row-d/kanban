@@ -1,6 +1,6 @@
 @layer components {
   .activityBar {
-    @apply flex flex-col justify-between items-center p-1 h-1/4 gap-4 bg-neutral-800;
+    @apply flex flex-col justify-between items-center p-1 h-1/4 gap-4 bg-nord1;
   }
   @screen xl {
     .activityBar {
@@ -9,7 +9,7 @@
   }
 
   .board-title {
-    @apply text-center text-3xl focus:placeholder:text-transparent font-bold text-white placeholder:text-white;
+    @apply text-center align-middle text-3xl mb-4 focus:placeholder:text-transparent font-bold text-nord4 placeholder:text-nord4;
   }
   @screen xl {
     .board-title {
@@ -28,15 +28,19 @@
   }
   
   .button {
-    @apply overflow-hidden bg-primary text-base text-black font-bold px-3 py-2;
+    @apply rounded overflow-hidden text-base text-nord0 font-bold px-3 py-2;
   }
 
-  .button--warning{
-    @apply overflow-hidden bg-red-600 text-base text-black font-bold px-3 py-2;
+  .button--addColumn{
+    @apply bg-nord7;
+  }
+
+  .button--resetBoard{
+    @apply overflow-hidden bg-nord11 text-base text-nord0 font-bold px-3 py-2;
   }
   
-  .button--save{
-    @apply overflow-hidden bg-emerald-400 text-base text-black font-bold px-3 py-2;
+  .button--saveBoard{
+    @apply overflow-hidden bg-nord13 text-base text-nord0 font-bold px-3 py-2;
   }
 
   @screen xl{

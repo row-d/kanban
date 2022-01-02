@@ -4,17 +4,9 @@ import { v4 as uuidv4 } from "uuid";
 
 function createTask(taskContent = "Task 🔖") {
   const task = document.createElement("li");
-  const taskText = document.createElement("textarea");
+  const taskText = document.createElement("div");
   const taskOptions = document.createElement("div");
-  const editButton = createElementsInElement(
-    [
-      {
-        tag: "i",
-        classNames: ["fas", "fa-edit"],
-      },
-    ],
-    "div"
-  );
+  
   const deleteButton = createElementsInElement(
     [
       {
@@ -51,14 +43,15 @@ function createTask(taskContent = "Task 🔖") {
   // properties
   task.draggable = true;
   task.id = uuidv4();
-  taskText.value = taskContent;
+  taskText.contentEditable = true;
+  taskText.textContent = taskContent;
 
   // start drag
   task.addEventListener("dragstart", startDrag);
 
   // append
   appendChilds(
-    [editButton, deleteButton, movePrevButton, moveNextButton],
+    [deleteButton, movePrevButton, moveNextButton],
     taskOptions
   );
   task.appendChild(taskText);

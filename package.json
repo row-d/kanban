@@ -5,9 +5,9 @@
   "scripts": {
     "format": "prettier --write \"src/**/*.js\"",
     "lint": "eslint \"src/**/*.js\" --quiet",
-    "start": "parcel src/index.html --lazy",
+    "start": "parcel src/index.html --lazy --no-source-maps",
     "watch": "parcel watch src/index.html",
-    "build": "parcel build src/index.html --no-source-maps"
+    "build": "parcel build src/index.html --no-source-maps --no-cache"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
+    "tailwind-nord": "^1.2.0",
     "uuid": "^8.3.2"
   }
 }

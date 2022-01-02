@@ -7,12 +7,12 @@ function saveBoard(button, kanban, boardTitle) {
       const columnTitle = column.querySelector(".column-header").value;
       const tasksTitles = [];
       column.querySelectorAll(".task-text").forEach((task) => {
-        tasksTitles.push(task.value);
+        tasksTitles.push(task.textContent);
       });
       columnsData.push({ columnTitle, tasksTitles });
     });
     localStorage.setItem("kanban", JSON.stringify(columnsData));
-    localStorage.setItem("board-title", boardTitle.value);
+    localStorage.setItem("board-title", boardTitle.textContent);
   }
 
   document.addEventListener("keydown", (e) => {
@@ -30,7 +30,7 @@ function resetBoard(element, kanban, boardTitle) {
     if (window.confirm("Are you sure you want to reset the board?")) {
       localStorage.clear();
       kanban.innerHTML = "";
-      boardTitle.value = "Untitled";
+      boardTitle.textContent = "Untitled";
     }
   });
 }

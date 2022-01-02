@@ -5,9 +5,9 @@ import getKanbanData from "./Events/window";
 // Get elements
 const kanban = document.querySelector(".kanban");
 const boardTitle = document.querySelector(".board-title");
-const addColumnButton = document.querySelector(".button");
-const resetBoardButton = document.querySelector(".button--warning");
-const saveBoardButton = document.querySelector(".button--save");
+const addColumnButton = document.querySelector(".button--addColumn");
+const resetBoardButton = document.querySelector(".button--resetBoard");
+const saveBoardButton = document.querySelector(".button--saveBoard");
 
 // get data from local storage and render it
 getKanbanData(kanban, boardTitle);
