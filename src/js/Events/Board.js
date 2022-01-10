@@ -7,9 +7,12 @@ function saveBoard(button, kanban, boardTitle) {
     columns.forEach((column) => {
       const columnTitle = $(column).find(".column-header").text();
       const tasksTitles = [];
-      $(column).find(".task-text").toArray().forEach((task) => {
-        tasksTitles.push(task.textContent);
-      });
+      $(column)
+        .find(".task-text")
+        .toArray()
+        .forEach((task) => {
+          tasksTitles.push(task.textContent);
+        });
       columnsData.push({ columnTitle, tasksTitles });
     });
     localStorage.setItem("kanban", JSON.stringify(columnsData));
