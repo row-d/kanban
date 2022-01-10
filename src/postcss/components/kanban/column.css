@@ -1,15 +1,19 @@
 @layer components{
 
   .column{
-    @apply flex flex-col overflow-hidden rounded p-2 shadow space-y-4 bg-nord3 h-full;
+    @apply flex flex-col overflow-hidden rounded p-2 shadow space-y-4 bg-nord3 h-full relative;
   }
 
   .column-header{
-    @apply rounded resize-none w-full h-full text-nord4 placeholder:text-nord4 text-center text-2xl  bg-nord2 !important;
+    @apply rounded resize-none w-full h-min text-nord4 placeholder:text-nord4 text-center text-2xl  bg-nord2 !important;
   }
 
   .column-tasks{
     @apply rounded flex flex-col gap-4 bg-nord2 p-2;
+  }
+
+  .removeColumn{
+    @apply text-nord11 px-4 py-1 rounded self-center text-base cursor-pointer absolute bottom-0 right-0;
   }
 
 }

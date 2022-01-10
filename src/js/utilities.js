@@ -1,32 +1,35 @@
+import $ from "jquery";
+
 // check if var is DOM element
 function isDOM(obj) {
   return obj instanceof Element;
 }
 // check if string is html tag name
 function isTag(str) {
-  return (
-    document.createElement(str).toString() != "[object HTMLUnknownElement]"
-  );
+  try {
+    document.createElement(str);
+  } catch (e) {
+    return false;
+  }
+  return true;
 }
 
-/** Creates elements that are attached to a passed parent/new parent element
+/** Creates elements according to the given tagName
  *
- * @param {Array of Objects} elementsTag
- * @param {String} wrapperTag
- * @returns wrapper element
+ * @param {String} elementTags
+ * @returns HTMLElement/Array of HTMLElement
  */
-
-function createElementsInElement(elementsTag, wrapperElement) {
-  const wrapper = isTag(wrapperElement)
-    ? document.createElement(wrapperElement)
-    : wrapperElement;
-
-  elementsTag.forEach(({ tag, classNames }) => {
-    const element = document.createElement(tag);
-    element.classList.add(...classNames);
-    wrapper.appendChild(element);
+function createElements(...elementTags) {
+  if (elementTags.length === 1) {
+    return document.createElement(elementTags[0]);
+  }
+  // else
+  const elements = [];
+  elementTags.forEach((elementTag) => {
+    const element = document.createElement(elementTag);
+    elements.push(element);
   });
-  return wrapper;
+  return elements;
 }
 
 /** Appends child elements to a parent element
@@ -34,10 +37,18 @@ function createElementsInElement(elementsTag, wrapperElement) {
  * @param {Array of HTMLElement} childs
  * @param {HTMLElement} parent
  */
-function appendChilds(childs, parent) {
+function appendChildren(parent, childs) {
   childs.forEach((child) => {
-    parent.appendChild(child);
+    $(parent).append(child);
   });
 }
 
-export { createElementsInElement, appendChilds, isDOM, isTag };
+function addClasses(elements, classNames) {
+  elements.forEach((element, i) => {
+    Array.isArray(classNames[i])
+      ? element.classList.add(...classNames[i])
+      : element.classList.add(classNames[i]);
+  });
+}
+
+export { addClasses, createElements, appendChildren, isDOM, isTag };

@@ -1,13 +1,13 @@
 import { saveBoard, resetBoard } from "./Events/Board";
 import { addColumn } from "./Column";
 import getKanbanData from "./Events/window";
-
+import $ from "jquery";
 // Get elements
-const kanban = document.querySelector(".kanban");
-const boardTitle = document.querySelector(".board-title");
-const addColumnButton = document.querySelector(".button--addColumn");
-const resetBoardButton = document.querySelector(".button--resetBoard");
-const saveBoardButton = document.querySelector(".button--saveBoard");
+const kanban = $(".kanban");
+const boardTitle = $(".board-title");
+const addColumnButton = $(".button--addColumn");
+const resetBoardButton = $(".button--resetBoard");
+const saveBoardButton = $(".button--saveBoard");
 
 // get data from local storage and render it
 getKanbanData(kanban, boardTitle);

@@ -1,44 +1,22 @@
-import { createElementsInElement, appendChilds } from "./utilities";
+import { createElements, appendChildren, addClasses } from "./utilities";
 import { startDrag } from "./Drag&Drop/drag";
 import { v4 as uuidv4 } from "uuid";
-
+import $ from "jquery";
 function createTask(taskContent = "Task 🔖") {
-  const task = document.createElement("li");
-  const taskText = document.createElement("div");
-  const taskOptions = document.createElement("div");
-  
-  const deleteButton = createElementsInElement(
-    [
-      {
-        tag: "i",
-        classNames: ["fas", "fa-trash"],
-      },
-    ],
-    "div"
-  );
-  const movePrevButton = createElementsInElement(
-    [
-      {
-        tag: "i",
-        classNames: ["fas", "fa-caret-up"],
-      },
-    ],
-    "div"
-  );
-  const moveNextButton = createElementsInElement(
-    [
-      {
-        tag: "i",
-        classNames: ["fas", "fa-caret-down"],
-      },
-    ],
-    "div"
-  );
+  const [task, taskText, taskOptions] = createElements("li", "div", "div");
+  const accessibilityIcons = createElements("i", "i", "i");
+  const accessibilityButtons = createElements("button", "button", "button");
 
   // add classes
-  task.classList.add("task");
-  taskText.classList.add("task-text");
-  taskOptions.classList.add("taskOptions");
+  addClasses(
+    [task, taskText, taskOptions],
+    ["task", "task-text", "taskOptions"]
+  );
+  addClasses(accessibilityIcons, [
+    ["fas", "fa-trash-alt"],
+    ["fas", "fa-caret-up"],
+    ["fas", "fa-caret-down"],
+  ]);
 
   // properties
   task.draggable = true;
@@ -46,27 +24,35 @@ function createTask(taskContent = "Task 🔖") {
   taskText.contentEditable = true;
   taskText.textContent = taskContent;
 
-  // start drag
-  task.addEventListener("dragstart", startDrag);
-
   // append
-  appendChilds(
-    [deleteButton, movePrevButton, moveNextButton],
-    taskOptions
+  accessibilityButtons.forEach((button, i) =>
+    $(button).append(accessibilityIcons[i])
   );
-  task.appendChild(taskText);
-  task.appendChild(taskOptions);
+  appendChildren(taskOptions, accessibilityButtons);
+  appendChildren(task, [taskText, taskOptions]);
+
+  // Events
+  $(task).on("dragstart", startDrag);
+  $(accessibilityButtons[0]).on("click", () => {
+    $(task).remove();
+  });
+  $(accessibilityButtons[1]).on("click", () => {
+    $(task).insertBefore($(task).prev());
+  });
+  $(accessibilityButtons[2]).on("click", () => {
+    $(task).insertAfter($(task).next());
+  });
 
   return task;
 }
 
 function addTaskEvent(column) {
-  const addTaskButton = column.querySelector(".addTask");
+  const addTaskButton = $(column).find(".addTask");
 
-  addTaskButton.addEventListener("click", () => {
+  $(addTaskButton).on("click", () => {
     const task = createTask();
-    const columnTasks = column.querySelector(".column-tasks");
-    columnTasks.appendChild(task);
+    const columnTasks = $(column).find(".column-tasks");
+    columnTasks.append(task);
   });
 }
 
