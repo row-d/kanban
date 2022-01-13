@@ -5,8 +5,9 @@
   }
 
   .column-header{
-    @apply rounded resize-none w-full h-min text-nord4 placeholder:text-nord4 text-center text-2xl  bg-nord2 !important;
+    @apply overflow-hidden  break-words rounded resize-none w-full h-min text-nord4 placeholder:text-nord4 text-center text-2xl  bg-nord2 !important;
   }
+ 
 
   .column-tasks{
     @apply rounded flex flex-col gap-4 bg-nord2 p-2;

@@ -9,7 +9,20 @@
   }
 
   .board-title {
-    @apply text-center align-middle text-3xl mb-4 focus:placeholder:text-transparent font-bold text-nord4 placeholder:text-nord4;
+    border-right: 4px solid;
+    @apply overflow-hidden whitespace-nowrap break-words text-center align-middle text-3xl mb-4 focus:placeholder:text-transparent font-bold text-nord4 placeholder:text-nord4;
+  }
+
+  .board-title:focus {
+    @apply border-none;
+  }
+
+  @keyframes typing{
+    from { width: 0; }
+  }
+
+  @keyframes blink{
+    50% { border-color: transparent; }
   }
   @screen xl {
     .board-title {
@@ -26,33 +39,33 @@
       @apply flex-row justify-between items-center;
     }
   }
-  
+
   .button {
     @apply rounded overflow-hidden text-base text-nord0 font-bold px-3 py-2;
   }
 
-  .button--addColumn{
+  .button--addColumn {
     @apply bg-nord7;
   }
 
-  .button--resetBoard{
+  .button--resetBoard {
     @apply overflow-hidden bg-nord11 text-base text-nord0 font-bold px-3 py-2;
   }
-  
-  .button--saveBoard{
+
+  .button--saveBoard {
     @apply overflow-hidden bg-nord13 text-base text-nord0 font-bold px-3 py-2;
   }
 
-  @screen xl{
+  @screen xl {
     .button {
       @apply px-6 py-4;
     }
-  
-    .button--warning{
+
+    .button--warning {
       @apply px-6 py-4;
     }
 
-    .button--save{
+    .button--save {
       @apply px-6 py-4;
     }
   }

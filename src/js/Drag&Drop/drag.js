@@ -2,16 +2,22 @@ import $ from "jquery";
 
 // drag task
 
-function startDrag(event) {
-  event.originalEvent.dataTransfer.setData("text/plain", event.target.id);
+function startDrag(e) {
+  e.originalEvent.dataTransfer.setData(
+    "text/plain",
+    e.target.dataset.taskTarget
+  );
 }
 
 // dropzone (column-tasks)
-function onDragOver(event) {
-  event.preventDefault();
+function onDragOver() {
+  return false;
+  // event.preventDefault();
+  // event.stopPropagation();
 }
 
 function onDrop(event) {
+  event.preventDefault();
   const id = event.originalEvent.dataTransfer.getData("text");
   const task = $(`#${id}`);
   const columnTasks = $(event.target);
