@@ -51,4 +51,18 @@ function addClasses(elements, classNames) {
   });
 }
 
-export { addClasses, createElements, appendChildren, isDOM, isTag };
+function swapElements(e1, e2) {
+  const p1 = e1.parentNode;
+  const p2 = e2.parentNode;
+  p1.insertBefore(e2, e1);
+  p2.insertBefore(e1, e2);
+}
+
+export {
+  swapElements,
+  addClasses,
+  createElements,
+  appendChildren,
+  isDOM,
+  isTag,
+};

@@ -10,7 +10,7 @@ function createColumn(columnTitle = "Untitled Column", tasksTitles = null) {
   if (tasksTitles !== null) {
     tasksTitles.forEach((taskTitle) => {
       const task = createTask(taskTitle);
-      $(columnTasks).append(task);
+      $(columnTasks).append($(task).show("slow"));
     });
   }
 
@@ -54,10 +54,10 @@ function createColumn(columnTitle = "Untitled Column", tasksTitles = null) {
   $(columnTasks).on("dragover", onDragOver);
   $(columnTasks).on("drop", onDrop);
   $(removeColumnButton).on("click", () => {
-    $(column).remove();
+    $(column).fadeOut(800, () => $(this).remove());
   });
 
-  return column;
+  return $(column).hide().fadeIn(800);
 }
 
 function addColumn(button, kanban) {

@@ -4,11 +4,11 @@
   }
 
   .task-text{
-    @apply w-full p-1 text-nord4 placeholder:text-nord4 text-base bg-nord1 !important;
+    @apply overflow-hidden  break-words flex-1 p-1 text-nord4 placeholder:text-nord4 text-base bg-nord1 !important;
   }
 
   .taskOptions{
-    @apply rounded-lg flex flex-col items-center border border-nord7 bg-nord7 gap-2 p-1;
+    @apply flex-initial self-end rounded-lg flex flex-col items-center border border-nord7 bg-nord7 gap-2 p-1;
   }
 
   .taskOptions > * {

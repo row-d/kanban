@@ -4,8 +4,13 @@ import { v4 as uuidv4 } from "uuid";
 import $ from "jquery";
 function createTask(taskContent = "Task 🔖") {
   const [task, taskText, taskOptions] = createElements("li", "div", "div");
-  const accessibilityIcons = createElements("i", "i", "i");
-  const accessibilityButtons = createElements("button", "button", "button");
+  const accessibilityIcons = createElements("i", "i", "i", "i");
+  const accessibilityButtons = createElements(
+    "button",
+    "button",
+    "button",
+    "button"
+  );
 
   // add classes
   addClasses(
@@ -16,11 +21,13 @@ function createTask(taskContent = "Task 🔖") {
     ["fas", "fa-trash-alt"],
     ["fas", "fa-caret-up"],
     ["fas", "fa-caret-down"],
+    ["fas", "fa-grip-vertical"],
   ]);
 
   // properties
-  task.draggable = true;
+  accessibilityButtons[3].draggable = true;
   task.id = uuidv4();
+  accessibilityButtons[3].dataset.taskTarget = task.id;
   taskText.contentEditable = true;
   taskText.textContent = taskContent;
 
@@ -32,7 +39,7 @@ function createTask(taskContent = "Task 🔖") {
   appendChildren(task, [taskText, taskOptions]);
 
   // Events
-  $(task).on("dragstart", startDrag);
+
   $(accessibilityButtons[0]).on("click", () => {
     $(task).remove();
   });
@@ -42,6 +49,7 @@ function createTask(taskContent = "Task 🔖") {
   $(accessibilityButtons[2]).on("click", () => {
     $(task).insertAfter($(task).next());
   });
+  $(accessibilityButtons[3]).on("dragstart", startDrag);
 
   return task;
 }
@@ -52,7 +60,7 @@ function addTaskEvent(column) {
   $(addTaskButton).on("click", () => {
     const task = createTask();
     const columnTasks = $(column).find(".column-tasks");
-    columnTasks.append(task);
+    columnTasks.append($(task).hide().fadeIn(800));
   });
 }
 
