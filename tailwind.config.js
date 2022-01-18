@@ -1,5 +1,5 @@
 module.exports = {
-  mode: "jit",
+  // mode: "jit",
   content: ["./src/**/*.{html,js}"],
   theme: {
     extend: {
@@ -8,6 +8,20 @@ module.exports = {
       },
       colors: {
         primary: "#E0FF00",
+      },
+      fontFamily: {
+        rubik: [
+          "Rubik",
+          "sans-serif",
+          "-apple-system",
+          "system-ui",
+          "ui-sans-serif",
+          "BlinkMacSystemFont",
+          "Apple Color Emoji",
+          "Segoe UI Emoji",
+          "Segoe UI Symbol",
+          "Noto Color Emoji",
+        ],
       },
     },
   },

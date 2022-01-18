@@ -14,6 +14,10 @@ function isTag(str) {
   return true;
 }
 
+function isJquery(obj) {
+  return obj instanceof $;
+}
+
 /** Creates elements according to the given tagName
  *
  * @param {String} elementTags
@@ -58,11 +62,31 @@ function swapElements(e1, e2) {
   p2.insertBefore(e1, e2);
 }
 
+function doThis({ fn, nTimes = 1, returnFn = false }) {
+  if (nTimes == 1 && returnFn == false) {
+    fn();
+  } else if (nTimes == 1 && returnFn == true) {
+    return fn();
+  } else if (nTimes > 1 && returnFn == false) {
+    for (let i = 0; i < nTimes; i++) {
+      fn();
+    }
+  } else if (nTimes > 1 && returnFn == true) {
+    const returnValues = [];
+    for (let i = 0; i < nTimes; i++) {
+      returnValues.push(fn());
+    }
+    return returnValues;
+  }
+}
+
 export {
+  doThis,
   swapElements,
   addClasses,
   createElements,
   appendChildren,
   isDOM,
   isTag,
+  isJquery,
 };

@@ -4,26 +4,33 @@
     <meta charset="UTF-8" />
     <title>Kanban Board</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./postcss/style.css" />
-    <script defer src="../node_modules/@fortawesome/fontawesome-free/js/solid.js"></script>
-    <script defer src="../node_modules/@fortawesome/fontawesome-free/js/fontawesome.js"></script>
+    <script
+      defer
+      src="../node_modules/@fortawesome/fontawesome-free/js/solid.js"
+    ></script>
+    <script
+      defer
+      src="../node_modules/@fortawesome/fontawesome-free/js/fontawesome.js"
+    ></script>
     <script type="module" src="./js/main.js"></script>
   </head>
   <body>
     <div class="activityBar">
-      <div class="board-title" contenteditable="true">Untitled</div>
+      <div
+        class="board-title"
+        contenteditable="true"
+        placeholder="Untitled"
+      ></div>
       <div class="kanbanOptions">
         <button class="button button--addColumn">Add Column</button>
         <button class="button button--resetBoard">Reset Board</button>
         <button class="button button--saveBoard">Save Board</button>
+        <button class="button button--randomData"><i class="fas fa-random"></i></button>
       </div>
+     
     </div>
-    <div class="kanban">
-      
-    </div>
+    <div class="kanban"></div>
   </body>
 </html>

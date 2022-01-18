@@ -1,10 +1,25 @@
-@layer base{
-
+@layer base {
+  @font-face{
+    font-family: 'Rubik';
+    src: url('./../assets/fonts/Rubik/Rubik-VariableFont_wght.ttf') format('truetype');
+  }
+  html {
+    font-size:10px;
+  }
   body {
-    @apply min-h-screen font-sans antialiased leading-tight bg-nord0 selection:text-nord0 selection:bg-nord7;
+    @apply min-h-screen font-rubik antialiased leading-tight bg-nord4 text-nord7 dark:bg-nord0 selection:text-nord0 selection:bg-nord7 selection:rounded;
   }
+  
 
-  input[type="text"],textarea,[contenteditable] {
-    @apply border-none outline-none bg-transparent;
-  }
+  [placeholder]:empty::before {
+    content: attr(placeholder);
+    @apply text-nord7 opacity-50;
+}
+
+[placeholder]:empty:focus::before {
+    content: "";
+}
+button{
+  @apply text-nord2;
+}
 }
