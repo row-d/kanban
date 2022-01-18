@@ -1,8 +1,8 @@
 import { createElements, appendChildren, addClasses } from "./utilities";
 import { addTaskEvent, createTask } from "./Task";
-import { onDragOver, onDrop } from "./Drag&Drop/drag";
+import { setDraggables } from "./Drag&Drop/drag";
 import $ from "jquery";
-function createColumn(columnTitle = "Untitled Column", tasksTitles = null) {
+function createColumn(columnTitle = null, tasksTitles = null) {
   const [column, title, columnTasks] = createElements("div", "div", "ul");
   const [addTaskIcon, addTaskButton] = createElements("i", "button");
   const [removeColumnIcon, removeColumnButton] = createElements("i", "button");
@@ -38,7 +38,8 @@ function createColumn(columnTitle = "Untitled Column", tasksTitles = null) {
 
   // properties
   title.contentEditable = true;
-  title.textContent = columnTitle;
+  $(title).text(columnTitle);
+  $(title).attr("placeholder", "Untitled");
 
   // append
   $(addTaskButton).append(addTaskIcon);
@@ -51,10 +52,9 @@ function createColumn(columnTitle = "Untitled Column", tasksTitles = null) {
   ]);
 
   // Events
-  $(columnTasks).on("dragover", onDragOver);
-  $(columnTasks).on("drop", onDrop);
+  setDraggables(columnTasks);
   $(removeColumnButton).on("click", () => {
-    $(column).fadeOut(800, () => $(this).remove());
+    $(column).fadeOut(800, () => $(column).remove());
   });
 
   return $(column).hide().fadeIn(800);

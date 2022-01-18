@@ -1,5 +1,9 @@
 import $ from "jquery";
-function saveBoard(button, kanban, boardTitle) {
+import { createColumn } from "../Column";
+import { addTaskEvent, createTask } from "../Task";
+import { appendChildren } from "../utilities";
+
+function saveBoard(activatorElement, kanban, boardTitle) {
   function saveOnLocalStorage() {
     const columns = $(kanban).find(".column").toArray();
     const columnsData = [];
@@ -11,7 +15,7 @@ function saveBoard(button, kanban, boardTitle) {
         .find(".task-text")
         .toArray()
         .forEach((task) => {
-          tasksTitles.push(task.textContent);
+          tasksTitles.push($(task).text());
         });
       columnsData.push({ columnTitle, tasksTitles });
     });
@@ -26,17 +30,41 @@ function saveBoard(button, kanban, boardTitle) {
     }
   });
 
-  $(button).on("click", saveOnLocalStorage);
+  $(activatorElement).on("click", saveOnLocalStorage);
 }
 
-function resetBoard(element, kanban, boardTitle) {
-  $(element).on("click", () => {
+function resetBoard(ActivatorElement, kanban, boardTitle) {
+  $(ActivatorElement).on("click", () => {
     if (window.confirm("Are you sure you want to reset the board?")) {
       localStorage.clear();
       $(kanban).empty();
-      $(boardTitle).text("Untitled");
+      $(boardTitle).text("");
     }
   });
 }
 
-export { saveBoard, resetBoard };
+function generateRandomActivities(activatorElement, kanban) {
+  $(activatorElement).on("click", async (e) => {
+    e.preventDefault();
+    const todoCol = createColumn("To do");
+    const todoTasks = $(todoCol).find(".column-tasks");
+    const doingCol = createColumn("Doing");
+    const doneCol = createColumn("Done");
+    addTaskEvent(todoCol);
+    addTaskEvent(doingCol);
+    addTaskEvent(doneCol);
+    appendChildren(kanban, [todoCol, doingCol, doneCol]);
+    const size = 3;
+    for (let i = 0; i < size; i++) {
+      const data = await $.ajax({
+        url: "https://www.boredapi.com/api/activity",
+        type: "GET",
+        dataType: "json",
+      });
+      const task = await createTask(data.activity);
+      todoTasks.append(task);
+    }
+  });
+}
+
+export { generateRandomActivities, saveBoard, resetBoard };

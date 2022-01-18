@@ -1,2 +1,3 @@
 @import "./kanban/kanban.css";
-@import "activity-bar.css";
+@import "./activity-bar.css";
+@import "./DragNDrop.css";

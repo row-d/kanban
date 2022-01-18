@@ -1,8 +1,6 @@
 import { createElements, appendChildren, addClasses } from "./utilities";
-import { startDrag } from "./Drag&Drop/drag";
-import { v4 as uuidv4 } from "uuid";
 import $ from "jquery";
-function createTask(taskContent = "Task 🔖") {
+function createTask(taskContent = null) {
   const [task, taskText, taskOptions] = createElements("li", "div", "div");
   const accessibilityIcons = createElements("i", "i", "i", "i");
   const accessibilityButtons = createElements(
@@ -13,6 +11,7 @@ function createTask(taskContent = "Task 🔖") {
   );
 
   // add classes
+  $(accessibilityButtons[3]).addClass("button--drag");
   addClasses(
     [task, taskText, taskOptions],
     ["task", "task-text", "taskOptions"]
@@ -25,11 +24,10 @@ function createTask(taskContent = "Task 🔖") {
   ]);
 
   // properties
-  accessibilityButtons[3].draggable = true;
-  task.id = uuidv4();
-  accessibilityButtons[3].dataset.taskTarget = task.id;
   taskText.contentEditable = true;
-  taskText.textContent = taskContent;
+  taskContent !== null
+    ? $(taskText).text(taskContent)
+    : $(taskText).attr("placeholder", "Type something...");
 
   // append
   accessibilityButtons.forEach((button, i) =>
@@ -39,17 +37,37 @@ function createTask(taskContent = "Task 🔖") {
   appendChildren(task, [taskText, taskOptions]);
 
   // Events
-
+  // remove task
   $(accessibilityButtons[0]).on("click", () => {
-    $(task).remove();
+    $(task).fadeOut(800, () => $(task).remove());
   });
+  // move task up
   $(accessibilityButtons[1]).on("click", () => {
+    // TODO: move task to the next columnTask when the task is in the first position
+    const columnTasks = $(task).parent();
+    const taskIndex = $(columnTasks).children().index(task);
+    if (taskIndex !== 0) {
+      $(columnTasks)
+        .children()
+        .eq(taskIndex - 1)
+        .before($(task));
+    }
     $(task).insertBefore($(task).prev());
   });
+  // move task down
   $(accessibilityButtons[2]).on("click", () => {
+    // TODO: move task to the next columnTask when the task is in the last position
+    const columnTasks = $(task).parent();
+    const taskIndex = $(columnTasks).children().index(task);
+    if (taskIndex !== $(columnTasks).children().length - 1) {
+      $(columnTasks)
+        .children()
+        .eq(taskIndex + 1)
+        .after($(task));
+    }
+
     $(task).insertAfter($(task).next());
   });
-  $(accessibilityButtons[3]).on("dragstart", startDrag);
 
   return task;
 }

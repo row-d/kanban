@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "format": "prettier --write \"src/**/*.js\"",
-    "lint": "eslint \"src/**/*.js\" --quiet",
+    "format": "prettier --write src/**/*.js",
+    "lint": "eslint src/**/*.js --quiet",
+    "lint:fix": "eslint src/**/*.js --fix",
     "start": "parcel src/index.html --lazy --no-source-maps",
     "watch": "parcel watch src/index.html",
     "build": "parcel build src/index.html --no-source-maps --no-cache"
@@ -33,6 +34,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
     "jquery": "^3.6.0",
+    "sortablejs": "^1.14.0",
     "tailwind-nord": "^1.2.0",
     "uuid": "^8.3.2"
   }

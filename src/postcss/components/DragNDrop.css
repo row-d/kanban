@@ -1,1 +1,3 @@
-// TODO: add animation to Tasks and Dragzone
+.button--drag {
+  @apply cursor-move;
+}

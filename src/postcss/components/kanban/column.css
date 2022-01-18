@@ -1,20 +1,20 @@
 @layer components{
 
   .column{
-    @apply flex flex-col overflow-hidden rounded p-2 shadow space-y-4 bg-nord3 h-full relative;
+    @apply flex flex-col overflow-hidden rounded p-2 shadow space-y-4 bg-nord6 dark:bg-nord3 min-h-[50vh] relative;
   }
 
   .column-header{
-    @apply overflow-hidden  break-words rounded resize-none w-full h-min text-nord4 placeholder:text-nord4 text-center text-2xl  bg-nord2 !important;
+    @apply overflow-hidden py-2 break-words rounded resize-none w-full h-min   bg-nord4  text-center text-2xl  dark:bg-nord2 !important;
   }
  
 
   .column-tasks{
-    @apply rounded flex flex-col gap-4 bg-nord2 p-2;
+    @apply bg-nord4 rounded flex flex-col gap-4 dark:bg-nord2 p-2 pb-4;
   }
 
   .removeColumn{
-    @apply text-nord11 px-4 py-1 rounded self-center text-base cursor-pointer absolute bottom-0 right-0;
+    @apply  px-4 py-1 rounded self-center text-base cursor-pointer absolute bottom-0 right-0 text-nord11;
   }
 
 }
