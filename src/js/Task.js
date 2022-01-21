@@ -44,28 +44,11 @@ function createTask(taskContent = null) {
   // move task up
   $(accessibilityButtons[1]).on("click", () => {
     // TODO: move task to the next columnTask when the task is in the first position
-    const columnTasks = $(task).parent();
-    const taskIndex = $(columnTasks).children().index(task);
-    if (taskIndex !== 0) {
-      $(columnTasks)
-        .children()
-        .eq(taskIndex - 1)
-        .before($(task));
-    }
     $(task).insertBefore($(task).prev());
   });
   // move task down
   $(accessibilityButtons[2]).on("click", () => {
     // TODO: move task to the next columnTask when the task is in the last position
-    const columnTasks = $(task).parent();
-    const taskIndex = $(columnTasks).children().index(task);
-    if (taskIndex !== $(columnTasks).children().length - 1) {
-      $(columnTasks)
-        .children()
-        .eq(taskIndex + 1)
-        .after($(task));
-    }
-
     $(task).insertAfter($(task).next());
   });
 
