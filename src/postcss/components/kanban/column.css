@@ -17,4 +17,8 @@
     @apply  px-4 py-1 rounded self-center text-base cursor-pointer absolute bottom-0 right-0 text-nord11;
   }
 
+  .taskButtonWrapper{
+    @apply flex justify-center gap-2;
+  }
+
 }

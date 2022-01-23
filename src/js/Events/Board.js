@@ -1,7 +1,4 @@
 import $ from "jquery";
-import { createColumn } from "../Column";
-import { addTaskEvent, createTask } from "../Task";
-import { appendChildren } from "../utilities";
 
 function saveBoard(activatorElement, kanban, boardTitle) {
   function saveOnLocalStorage() {
@@ -43,28 +40,4 @@ function resetBoard(ActivatorElement, kanban, boardTitle) {
   });
 }
 
-function generateRandomActivities(activatorElement, kanban) {
-  $(activatorElement).on("click", async (e) => {
-    e.preventDefault();
-    const todoCol = createColumn("To do");
-    const todoTasks = $(todoCol).find(".column-tasks");
-    const doingCol = createColumn("Doing");
-    const doneCol = createColumn("Done");
-    addTaskEvent(todoCol);
-    addTaskEvent(doingCol);
-    addTaskEvent(doneCol);
-    appendChildren(kanban, [todoCol, doingCol, doneCol]);
-    const size = 3;
-    for (let i = 0; i < size; i++) {
-      const data = await $.ajax({
-        url: "https://www.boredapi.com/api/activity",
-        type: "GET",
-        dataType: "json",
-      });
-      const task = await createTask(data.activity);
-      todoTasks.append(task);
-    }
-  });
-}
-
-export { generateRandomActivities, saveBoard, resetBoard };
+export { saveBoard, resetBoard };

@@ -1,10 +1,18 @@
 import { createElements, appendChildren, addClasses } from "./utilities";
-import { addTaskEvent, createTask } from "./Task";
+import { addTaskEvent, addRandomTaskEvent, createTask } from "./Task";
 import { setDraggables } from "./Drag&Drop/drag";
 import $ from "jquery";
+
 function createColumn(columnTitle = null, tasksTitles = null) {
   const [column, title, columnTasks] = createElements("div", "div", "ul");
+
+  const taskButtonWrapper = createElements("div");
   const [addTaskIcon, addTaskButton] = createElements("i", "button");
+  const [addRandomTaskIcon, addRandomTaskButton] = createElements(
+    "i",
+    "button"
+  );
+
   const [removeColumnIcon, removeColumnButton] = createElements("i", "button");
 
   if (tasksTitles !== null) {
@@ -20,19 +28,25 @@ function createColumn(columnTitle = null, tasksTitles = null) {
       column,
       title,
       columnTasks,
+      taskButtonWrapper,
       addTaskButton,
       addTaskIcon,
       removeColumnButton,
       removeColumnIcon,
+      addRandomTaskButton,
+      addRandomTaskIcon,
     ],
     [
       "column",
       "column-header",
       "column-tasks",
-      "addTask",
+      "taskButtonWrapper",
+      ["button", "button--addTask"],
       ["fas", "fa-plus"],
       "removeColumn",
       ["fas", "fa-trash-alt"],
+      ["button", "button--addRandomTask"],
+      ["fas", "fa-random"],
     ]
   );
 
@@ -43,11 +57,13 @@ function createColumn(columnTitle = null, tasksTitles = null) {
 
   // append
   $(addTaskButton).append(addTaskIcon);
+  $(addRandomTaskButton).append(addRandomTaskIcon);
   $(removeColumnButton).append(removeColumnIcon);
+  appendChildren(taskButtonWrapper, [addTaskButton, addRandomTaskButton]);
   appendChildren(column, [
     title,
     columnTasks,
-    addTaskButton,
+    taskButtonWrapper,
     removeColumnButton,
   ]);
 
@@ -64,6 +80,7 @@ function addColumn(button, kanban) {
   $(button).on("click", () => {
     const column = createColumn();
     addTaskEvent(column);
+    addRandomTaskEvent(column);
     $(kanban).append(column);
   });
 }
