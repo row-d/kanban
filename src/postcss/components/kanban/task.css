@@ -19,7 +19,11 @@
     @apply text-nord11 dark:text-nord11;
   }
 
-  .addTask{
-    @apply border-2 border-nord7 dark:bg-nord7  px-4 py-1 rounded self-center text-base cursor-pointer;
+  .button--addTask{
+    @apply border-nord7 dark:bg-nord7  self-center;
+  }
+
+  .button--addRandomTask {
+    @apply border-nord14 dark:bg-nord14  self-center;
   }
 }

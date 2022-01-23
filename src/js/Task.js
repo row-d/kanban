@@ -44,27 +44,12 @@ function createTask(taskContent = null) {
   // move task up
   $(accessibilityButtons[1]).on("click", () => {
     // TODO: move task to the next columnTask when the task is in the first position
-    const columnTasks = $(task).parent();
-    const taskIndex = $(columnTasks).children().index(task);
-    if (taskIndex !== 0) {
-      $(columnTasks)
-        .children()
-        .eq(taskIndex - 1)
-        .before($(task));
-    }
+
     $(task).insertBefore($(task).prev());
   });
   // move task down
   $(accessibilityButtons[2]).on("click", () => {
     // TODO: move task to the next columnTask when the task is in the last position
-    const columnTasks = $(task).parent();
-    const taskIndex = $(columnTasks).children().index(task);
-    if (taskIndex !== $(columnTasks).children().length - 1) {
-      $(columnTasks)
-        .children()
-        .eq(taskIndex + 1)
-        .after($(task));
-    }
 
     $(task).insertAfter($(task).next());
   });
@@ -73,7 +58,7 @@ function createTask(taskContent = null) {
 }
 
 function addTaskEvent(column) {
-  const addTaskButton = $(column).find(".addTask");
+  const addTaskButton = $(column).find(".button--addTask");
 
   $(addTaskButton).on("click", () => {
     const task = createTask();
@@ -82,4 +67,17 @@ function addTaskEvent(column) {
   });
 }
 
-export { createTask, addTaskEvent };
+function addRandomTaskEvent(column) {
+  const addRandomTaskButton = $(column).find(".button--addRandomTask");
+  const columnTasks = $(column).find(".column-tasks");
+  $(addRandomTaskButton).on("click", (e) => {
+    e.preventDefault();
+    console.log("here");
+    $.getJSON("https://www.boredapi.com/api/activity", (data) => {
+      const task = createTask(data.activity);
+      columnTasks.append(task);
+    });
+  });
+}
+
+export { createTask, addTaskEvent, addRandomTaskEvent };

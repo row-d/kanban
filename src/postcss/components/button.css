@@ -1,0 +1,11 @@
+@layer components {
+  .button {
+    @apply rounded focus:outline-none overflow-hidden text-base border-2  dark:border-none font-bold px-3 py-2 hover:-translate-y-2 ease-in-out duration-300;
+  }
+
+  @screen xl {
+    .button {
+      @apply px-6 py-4;
+    }
+  }
+}

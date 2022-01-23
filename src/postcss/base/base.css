@@ -3,9 +3,6 @@
     font-family: 'Rubik';
     src: url('./../assets/fonts/Rubik/Rubik-VariableFont_wght.ttf') format('truetype');
   }
-  html {
-    font-size:10px;
-  }
   body {
     @apply min-h-screen font-rubik antialiased leading-tight bg-nord4 text-nord7 dark:bg-nord0 selection:text-nord0 selection:bg-nord7 selection:rounded;
   }
